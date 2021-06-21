@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ordercoffee">
+
+    <TextView
+        android:id="@+id/txtAmountCoffee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Amount of Coffee"
+        android:textSize="26dp"
+        android:layout_margin="20sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btnMinus"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/purple_200"
+            android:text="-"
+            android:textSize="22dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="1"
+            android:textSize="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/purple_200"
+            android:text="+"
+            android:textSize="22dp"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Toppings:"
+        android:textSize="22dp"
+        android:layout_margin="15dp"/>
+    <CheckBox
+        android:id="@+id/checkcream"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cream ($1)"
+        android:textSize="20dp"
+        android:layout_marginStart="10sp"/>
+    <CheckBox
+        android:id="@+id/checkcookie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cookie Flakes ($2)"
+        android:textSize="20dp"
+        android:layout_marginStart="10sp"/>
+    <CheckBox
+        android:id="@+id/checkchoco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chocolate Chip ($3)"
+        android:textSize="20dp"
+        android:layout_marginStart="10sp"/>
+    <Button
+        android:id="@+id/btnmakeorder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_200"
+        android:text="Make Order"
+        android:textSize="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="18sp"
+        android:textAllCaps="false"/>
+
+</LinearLayout>
