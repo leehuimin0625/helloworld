@@ -13,11 +13,11 @@ import com.example.helloworld.R;
 
 import java.util.ArrayList;
 
-class FruitAdapter extends ArrayAdapter {
+class SimpleAdapter extends ArrayAdapter {
     private ArrayList<String> data;
     private Context context;
 
-    FruitAdapter(Context context, ArrayList<String> list){
+    SimpleAdapter(Context context, ArrayList<String> list){
         super(context, R.layout.single_row_simple_listview);
         this.data = list;
         this.context = context;

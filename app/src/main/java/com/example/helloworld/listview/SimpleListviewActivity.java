@@ -1,16 +1,34 @@
 package com.example.helloworld.listview;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.widget.ListView;
 import com.example.helloworld.R;
 
+import org.jetbrains.annotations.NotNull;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class SimpleListviewActivity extends AppCompatActivity {
+    private OkHttpClient client = new OkHttpClient();
     private ArrayList<String> arrayData = new ArrayList<>();
     private ListView listView;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,26 +36,62 @@ public class SimpleListviewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_simple_listview);
         findViews();
         populateArrayList();
-        initListview();
     }
 
     private void findViews(){
         listView = findViewById(R.id.listview);
+        progressBar = findViewById(R.id.progressBar);
     }
 
     private void populateArrayList(){
-        arrayData.add("Mango");
-        arrayData.add("Rambutan");
-        arrayData.add("Pineapple");
-        arrayData.add("Orange");
+        progressBar.setVisibility(View.VISIBLE);
+        Request request = new Request.Builder()
+                .url("https://api.jsonbin.io/v3/b/60d1a6388ea8ec25bd12e8a9")
+                .build();
 
-        for (int i=0; i<50; i++){
-            arrayData.add("Guava");
-        }
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                runOnUiThread( () -> {
+                    progressBar.setVisibility(View.GONE);
+                    e.printStackTrace();
+                });
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                if (response.body() != null){
+                    try{
+                        JSONObject resObject = new JSONObject(response.body().string());
+
+                        JSONArray userArray = resObject.getJSONObject("record").getJSONArray("users");
+
+                        for(int i=0; i < userArray.length(); i++){
+                            arrayData.add(userArray.getString(i));
+                        }
+
+                        runOnUiThread( () -> {
+                            initListview();
+                            progressBar.setVisibility(View.GONE);
+                        });
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
-    private void initListview(){
-        FruitAdapter adapter = new FruitAdapter(SimpleListviewActivity.this,arrayData);
-        listView.setAdapter(adapter);
 
+    private void initListview(){
+        SimpleAdapter adapter = new SimpleAdapter(SimpleListviewActivity.this, arrayData);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String userClick = arrayData.get(i);
+                Toast.makeText(SimpleListviewActivity.this, "You Clicked On:" + userClick, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
