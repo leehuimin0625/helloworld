@@ -8,9 +8,10 @@ import android.os.Bundle;
 
 import com.example.helloworld.R;
 
-public class ArrayList extends AppCompatActivity {
+import java.util.ArrayList;
+public class Arraylist extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private java.util.ArrayList contactArrayList = new java.util.ArrayList();
+    private ArrayList<Contact> contactArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +30,15 @@ public class ArrayList extends AppCompatActivity {
 
     }
     private void initRecyclerView(){
-        for(int i=0; i<5; i++){
-            Contact contact = new Contact("John","0136633776");
-            contactArrayList.add(contact);
-        }
+        contactArrayList.add(new Contact("BK", "1232534467"));
+        contactArrayList.add(new Contact("John", "1122233887"));
+        contactArrayList.add(new Contact("Jack", "1254422312"));
+        contactArrayList.add(new Contact("Ali", "1234581818"));
+        contactArrayList.add(new Contact("ABC", "2918210118"));
+        contactArrayList.add(new Contact("CDE", "129291821"));
+        contactArrayList.add(new Contact("EFG", "9199128191"));
 
-      ContactAdapter adapter = new ContactAdapter(ArrayList.this,contactArrayList);
+      ContactAdapter adapter = new ContactAdapter(Arraylist.this,contactArrayList);
       recyclerView.setAdapter(adapter);
       recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

@@ -46,7 +46,7 @@ public class SimpleListviewActivity extends AppCompatActivity {
     private void populateArrayList(){
         progressBar.setVisibility(View.VISIBLE);
         Request request = new Request.Builder()
-                .url("https://api.jsonbin.io/v3/b/60d1a6388ea8ec25bd12e8a9")
+                .url("https://api.jsonbin.io/v3/b/60d14dca8ea8ec25bd12b9b4")
                 .build();
 
         client.newCall(request).enqueue(new Callback() {

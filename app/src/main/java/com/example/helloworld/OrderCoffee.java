@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-public class ordercoffee extends AppCompatActivity {
+public class OrderCoffee extends AppCompatActivity {
     private Button btnAdd, btnMinus, btnmakeorder;
     private CheckBox checkcream, checkcookie, checkchoco;
     private TextView txtAmountCoffee;
@@ -57,7 +57,7 @@ public class ordercoffee extends AppCompatActivity {
             }
             price = price * amount;
 
-            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ordercoffee.this);
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(OrderCoffee.this);
             dialogBuilder.setMessage("Your order is complete! The total price is $" + Integer.toString(price));
             dialogBuilder.setNeutralButton("ok",null);
             dialogBuilder.create().show();
