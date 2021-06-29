@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             String usernameInput = edtusername.getText().toString();
             String passwordInput = edtpassword.getText().toString();
             if(usernameInput.equals(username)&& passwordInput.equals(password)) {
-                Intent intent = new Intent(MainActivity.this, ordercoffee.class);
+                Intent intent = new Intent(MainActivity.this, OrderCoffee.class);
                 startActivity(intent);
                 finish();
             }else{
