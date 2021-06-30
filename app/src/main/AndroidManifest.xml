@@ -12,18 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HelloWorld">
         <activity android:name=".sharedpreferences.SharedPreferencesDisplayActivity"></activity>
-        <activity android:name=".sharedpreferences.SharedPreferencesDemoActivity" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
+        <activity android:name=".sharedpreferences.SharedPreferencesDemoActivity" />
         <activity android:name=".studentrecyclerview.StudentlistActivity"/>
         <activity android:name=".recyclerview.Arraylist" />
         <activity android:name=".listview.SimpleListviewActivity" />
         <activity android:name=".OrderCoffee" />
         <activity android:name=".InfoActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".LoginActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

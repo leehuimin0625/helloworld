@@ -2,13 +2,19 @@ package com.example.helloworld;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.net.Uri;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.example.helloworld.utils.SessionManager;
 
 public class InfoActivity extends AppCompatActivity {
-    private Button btnGoToWebsite;
+    private Button btnLogout;
+    private LinearLayout rootLayout;
+    private TextView tvUsername, tvEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,43 +22,44 @@ public class InfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_info);
         findViews();
         setListeners();
+        initializeInterface();
     }
-
-    @Override
-    protected void  onStart(){
-        super.onStart();
-        Log.d(getClass().getSimpleName(), "inside onStart()");
-    }
-    @Override
-    protected void  onResume(){
-        super.onResume();
-        Log.d(getClass().getSimpleName(), "inside onResume()");
-    }
-    @Override
-    protected void  onPause(){
-        super.onPause();
-        Log.d(getClass().getSimpleName(), "inside onPause()");
-    }
-    @Override
-    protected void  onStop(){
-        super.onStop();
-        Log.d(getClass().getSimpleName(), "inside onStop()");
-    }
-    @Override
-    protected void  onDestroy(){
-        super.onDestroy();
-        Log.d(getClass().getSimpleName(), "inside onDestroy()");
-    }
-
 
     private void findViews(){
-       btnGoToWebsite=findViewById(R.id.btnGoTowebsite);
+       rootLayout = findViewById(R.id.rootlayout);
+       tvUsername = findViewById(R.id.username);
+       tvEmail = findViewById(R.id.email);
+       btnLogout=findViewById(R.id.btnLogout);
     }
 
     private void setListeners(){
-        btnGoToWebsite.setOnClickListener(view->{
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("www.google.com"));
-            startActivity(browserIntent);
+        btnLogout.setOnClickListener(view->{
+            SharedPreferences pref = getSharedPreferences(LoginActivity.PREF_NAME_SESSION, MODE_PRIVATE);
+            pref.edit().clear().apply();
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
+            finish();
         });
+    }
+    private void initializeInterface(){
+        SessionManager manager = new SessionManager(this);
+        String email = manager.getEmail();
+        String username = manager.getUsername();
+        String color = manager.getColor();
+
+        tvEmail.setText(email);
+        tvUsername.setText(username);
+
+        String colorCode ="##FFFFFF";
+
+        if(color.equals("blue")){
+            colorCode="#ABD8FF";
+        }else if(color.equals("green")){
+            colorCode = "#6EFFB6";
+        } else if(color.equals("purple")){
+            colorCode = "#D7BAFF";
+        }
+
+        rootLayout.setBackgroundColor(Color.parseColor(colorCode));
     }
 }
