@@ -25,7 +25,7 @@ public class SharedPreferencesDemoActivity extends AppCompatActivity {
         
     }
     private void findViews(){
-       edtName= findViewById(R.id.edtName);
+       edtName= findViewById(R.id.edtNama);
        edtCourse=findViewById(R.id.edtCourse);
        edtAge=findViewById(R.id.edtAge);
        btnSave=findViewById(R.id.btnSave);

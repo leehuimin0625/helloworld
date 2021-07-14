@@ -1,4 +1,4 @@
-package com.example.helloworld.recyclerview;
+package com.example.helloworld.sqlitedemo.room;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,14 +16,14 @@ import com.example.helloworld.sqlitedemo.ViewContactActivity;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
+import java.util.List;
 
-class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
-    private ArrayList <Contact> contactList;
+public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder>{
+    private List<Contact>contactList;
     private Context context;
 
-    public ContactAdapter(Context context, ArrayList<Contact> list){
-        this.contactList=list;
+    public ContactAdapter(Context context, List<Contact>list){
+        this.contactList = list;
         this.context = context;
     }
 
@@ -37,42 +37,42 @@ class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull ContactAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
         Contact contact = contactList.get(position);
 
         holder.tvName.setText(contact.getName());
-        holder.tvPhoneNumber.setText(contact.getPhonenumber());
-        holder.rootLayout.setOnClickListener(view->{
+        holder.tvPhoneNumber.setText(contact.getPhoneNumber());
+        holder.rootLayout.setOnClickListener(view -> {
             //Open View Contact Activity
             Intent i = new Intent(context, ViewContactActivity.class);
             i.putExtra(ViewContactActivity.KEY_ID, contact.getId());
             i.putExtra(ViewContactActivity.KEY_NAME, contact.getName());
-            i.putExtra(ViewContactActivity.KEY_NUMBER, contact.getPhonenumber());
+            i.putExtra(ViewContactActivity.KEY_NUMBER, contact.getPhoneNumber());
             context.startActivity(i);
         });
     }
 
     @Override
-    public int getItemCount(){
+    public int getItemCount() {
         return contactList.size();
     }
 
-    public void updateData(ArrayList<Contact> newContactList){
+    public void updateData(List<Contact> newContactList){
         contactList.clear();
         contactList = newContactList;
         notifyDataSetChanged();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView tvName,tvPhoneNumber;
+        public TextView tvName, tvPhoneNumber;
         public LinearLayout rootLayout;
 
         public ViewHolder(View itemView){
             super(itemView);
 
-            tvName=itemView.findViewById(R.id.name);
-            tvPhoneNumber=itemView.findViewById(R.id.phoneNumber);
-            rootLayout=itemView.findViewById(R.id.single_row_root);
+            tvName = itemView.findViewById(R.id.name);
+            tvPhoneNumber = itemView.findViewById(R.id.phoneNumber);
+            rootLayout = itemView.findViewById(R.id.single_row_root);
         }
     }
 }

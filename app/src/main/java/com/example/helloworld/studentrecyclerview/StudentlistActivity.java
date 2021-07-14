@@ -37,6 +37,7 @@ public class StudentlistActivity extends AppCompatActivity {
     private void findViews(){
         recyclerView=findViewById(R.id.recyclerview);
     }
+
     private void iniAdapterView(){
         Request request = new Request.Builder()
                 .url("https://api.jsonbin.io/b/5f2773c81823333f8f1afec3/1")
@@ -64,6 +65,7 @@ public class StudentlistActivity extends AppCompatActivity {
                         student.setName(singleObject.getString("name"));
                         student.setCourseName(singleObject.getString("course"));
                         student.setPhoto(singleObject.getString("photo"));
+
                         studentArrayList.add(student);
                     }
 
