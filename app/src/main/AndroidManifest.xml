@@ -11,15 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HelloWorld">
-        <activity android:name=".whatsappclone.WhatsappMainActivity">
+        <activity android:name=".drawer.DrawerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".fragmentexample.BottomMenuActivity">
+        <activity android:name=".whatsappclone.WhatsappMainActivity">
         </activity>
+        <activity android:name=".fragmentexample.BottomMenuActivity"></activity>
         <activity android:name=".sqlitedemo.ViewContactActivity" />
         <activity android:name=".sqlitedemo.AddContactActivity" />
         <activity android:name=".sqlitedemo.ContactManagerActivity" />
