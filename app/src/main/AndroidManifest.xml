@@ -11,15 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HelloWorld">
-        <activity android:name=".broadcastreceiver.BroadcastReceiverActivity">
+        <activity android:name=".musicplayer.MusicPlayerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".drawer.DrawerActivity"></activity>
-        <activity android:name=".whatsappclone.WhatsappMainActivity"></activity>
+        <activity android:name=".broadcastreceiver.BroadcastReceiverActivity">
+        </activity>
+        <activity android:name=".drawer.DrawerActivity" />
+        <activity android:name=".whatsappclone.WhatsappMainActivity" />
         <activity android:name=".fragmentexample.BottomMenuActivity" />
         <activity android:name=".sqlitedemo.ViewContactActivity" />
         <activity android:name=".sqlitedemo.AddContactActivity" />
@@ -33,7 +35,7 @@
         <activity android:name=".InfoActivity" />
         <activity android:name=".LoginActivity" />
 
-        <receiver android:name=".broadcastreceiver.SampleBroadcastReceiver"/>
+        <receiver android:name=".broadcastreceiver.SampleBroadcastReceiver" />
     </application>
 
 </manifest>
